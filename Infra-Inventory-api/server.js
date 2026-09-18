@@ -1,15 +1,15 @@
 const express = require("express");
 
+const servidoresRoutes = require("./routes/servidores.routes");
+
 const app = express();
 
-const basesRoutes = require("./routes/bases.routes");
+app.use(express.json());
 
-app.use(basesRoutes);
+app.use("/servidores", servidoresRoutes);
 
-app.listen(3000, () => {
+const PORT = 3000;
 
-    console.log("Servidor iniciado en http://localhost:3000");
-
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
-
-

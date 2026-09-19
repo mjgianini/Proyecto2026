@@ -1,54 +1,54 @@
-const service = require("../services/bases.service");
+const service = require("../services/red.service");
 
 function obtenerTodos(req, res) {
     const filtros = req.query;
 
     if (Object.keys(filtros).length > 0) {
-        const bases = service.buscar(filtros);
+        const redes = service.buscar(filtros);
 
-        return res.status(200).json(bases);
+        return res.status(200).json(redes);
     }
 
-    const bases = service.obtenerTodos();
+    const redes = service.obtenerTodos();
 
-    res.status(200).json(bases);
+    res.status(200).json(redes);
 }
 
 function obtenerPorId(req, res) {
     const id = Number(req.params.id);
 
-    const base = service.obtenerPorId(id);
+    const red = service.obtenerPorId(id);
 
-    if (!base) {
+    if (!red) {
         return res.status(404).json({
-            error: "Base de datos no encontrada"
+            error: "Configuración de red no encontrada"
         });
     }
 
-    res.status(200).json(base);
+    res.status(200).json(red);
 }
 
 function crear(req, res) {
     const datos = req.body;
 
-    const nuevaBase = service.crear(datos);
+    const nuevaRed = service.crear(datos);
 
-    res.status(201).json(nuevaBase);
+    res.status(201).json(nuevaRed);
 }
 
 function actualizar(req, res) {
     const id = Number(req.params.id);
     const datos = req.body;
 
-    const baseActualizada = service.actualizar(id, datos);
+    const redActualizada = service.actualizar(id, datos);
 
-    if (!baseActualizada) {
+    if (!redActualizada) {
         return res.status(404).json({
-            error: "Base de datos no encontrada"
+            error: "Configuración de red no encontrada"
         });
     }
 
-    res.status(200).json(baseActualizada);
+    res.status(200).json(redActualizada);
 }
 
 function eliminar(req, res) {
@@ -58,7 +58,7 @@ function eliminar(req, res) {
 
     if (!eliminado) {
         return res.status(404).json({
-            error: "Base de datos no encontrada"
+            error: "Configuración de red no encontrada"
         });
     }
 

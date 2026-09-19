@@ -1,4 +1,4 @@
-const repository = require("../repositories/bases.repository");
+const repository = require("../repositories/red.repository");
 
 function obtenerTodos() {
     return repository.obtenerTodos();

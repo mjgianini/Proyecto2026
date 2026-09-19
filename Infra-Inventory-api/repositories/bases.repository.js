@@ -1,66 +1,101 @@
- const bases= [
-
-        {
-            id: 1,
-            motor: "Oracle",
-            version: "26ai",
-            servidor: "srv-db01",
-            base: "ERPPRD"
-        },
-
-        {
-            id: 2,
-            motor: "SQL Server",
-            version: "2022",
-            servidor: "srv-db02",
-            base: "RRHH"
-        },
-                {
-            id: 3,
-            motor: "Oracle",
-            version: "19c",
-            servidor: "srv-db02",
-            base: "ORATST"
-        }
-
-
-    ];
-
-function obtenerBases(filtros) {
-
-   let resultado = bases;
-
-    if (filtros.motor) {
-        resultado = resultado.filter(
-            base => base.motor === filtros.motor
-        );
+let bases = [
+    {
+        id: 1,
+        motor: "Oracle",
+        version: "19c",
+        servidor: "srv-db01",
+        nombre: "VENTAS",
+        responsable: "Equipo DBA"
+    },
+    {
+        id: 2,
+        motor: "Oracle",
+        version: "26ai",
+        servidor: "srv-db01",
+        nombre: "ERPPRD",
+        responsable: "Equipo DBA"
+    },
+    {
+        id: 3,
+        motor: "SQL Server",
+        version: "2022",
+        servidor: "srv-db02",
+        nombre: "RRHH",
+        responsable: "Equipo DBA"
+    },
+    {
+        id: 4,
+        motor: "MySQL",
+        version: "8.0",
+        servidor: "srv-app01",
+        nombre: "INVENTARIO",
+        responsable: "Equipo DBA"
     }
+];
 
-    if (filtros.version) {
-        resultado = resultado.filter(
-            base => base.version === filtros.version
-        );
-    }
-
-    if (filtros.servidor) {
-        resultado = resultado.filter(
-            base => base.servidor === filtros.servidor
-        );
-    }    
-
-    return resultado;
-
+function obtenerTodos() {
+    return bases;
 }
 
-function obtenerBasesPorId(id) {
-
-    return bases.find(base => base.id === id);
-
+function obtenerPorId(id) {
+    return bases.find(base => base.id === id) || null;
 }
 
+function crear(datos) {
+    const nuevoId = bases.length > 0
+        ? Math.max(...bases.map(base => base.id)) + 1
+        : 1;
+
+    const nuevaBase = {
+        id: nuevoId,
+        ...datos
+    };
+
+    bases.push(nuevaBase);
+
+    return nuevaBase;
+}
+
+function actualizar(id, datos) {
+    const indice = bases.findIndex(base => base.id === id);
+
+    if (indice === -1) {
+        return null;
+    }
+
+    bases[indice] = {
+        id,
+        ...datos
+    };
+
+    return bases[indice];
+}
+
+function eliminar(id) {
+    const indice = bases.findIndex(base => base.id === id);
+
+    if (indice === -1) {
+        return false;
+    }
+
+    bases.splice(indice, 1);
+
+    return true;
+}
+
+function buscar(filtros) {
+    return bases.filter(base => {
+        return Object.entries(filtros).every(([campo, valor]) => {
+            return String(base[campo]).toLowerCase() === String(valor).toLowerCase();
+        });
+    });
+}
 
 module.exports = {
-
-    obtenerBases,obtenerBasesPorId
-
+    obtenerTodos,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar,
+    buscar
 };

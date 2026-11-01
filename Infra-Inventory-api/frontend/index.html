@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InfraInventory</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>InfraInventory</h1>
+        <p>Gestión de infraestructura</p>
+    </header>
+
+    <main>
+        <h2>Servidores</h2>
+        <form id="servidor-form">
+
+            <h3>Nuevo servidor</h3>
+
+            <label>
+                Nombre:
+                <input type="text" id="nombre" required>
+            </label>
+
+            <label>
+                IP:
+                <input type="text" id="ip" required>
+            </label>
+
+            <label>
+                Ambiente:
+                <select id="ambiente" required>
+                    <option value="">Seleccionar</option>
+                    <option value="Produccion">Producción</option>
+                    <option value="Testing">Testing</option>
+                </select>
+            </label>
+
+            <label>
+                Tipo:
+                <select id="tipo" required>
+                    <option value="">Seleccionar</option>
+                    <option value="Virtual">Virtual</option>
+                    <option value="Fisico">Físico</option>
+                </select>
+            </label>
+
+            <button type="submit">Crear servidor</button>
+
+        </form>
+        <div id="mensaje-error"></div>
+
+        <div id="mensaje-exito"></div>
+
+        <div id="servidores-container">
+            <!-- Aquí JavaScript va a cargar los servidores -->
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>

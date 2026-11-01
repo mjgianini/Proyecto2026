@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 const servidoresRoutes = require("./routes/servidores.routes");
 const basesRoutes = require("./routes/bases.routes");
@@ -8,8 +9,8 @@ const sistemasOperativosRoutes = require("./routes/sistemas-operativos.routes");
 const resumenRoutes = require("./routes/resumen.routes");
 
 const app = express();
-
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "frontend")));
 
 app.use("/servidores", servidoresRoutes);
 app.use("/bases", basesRoutes);

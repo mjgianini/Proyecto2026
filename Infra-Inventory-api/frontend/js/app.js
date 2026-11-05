@@ -158,6 +158,7 @@ servidoresContainer.addEventListener("click", async function(event) {
     document.getElementById("tipo").value = servidor.tipo;
     
     form.querySelector("button[type='submit']").textContent = "Guardar cambios";
+    document.getElementById("btn-cancelar").style.display = "inline";
 
     console.log("Servidor encontrado:", servidor);
 
@@ -207,3 +208,52 @@ servidoresContainer.addEventListener("click", async function(event) {
     }
 
 });
+
+const botonCancelar = document.getElementById("btn-cancelar");
+
+botonCancelar.addEventListener("click", function() {
+
+    form.reset();
+
+    servidorEditandoId = null;
+
+    form.querySelector("button[type='submit']").textContent = "Crear servidor";
+
+    botonCancelar.style.display = "none";
+
+});
+
+
+async function cargarResumen() {
+
+    try {
+
+        const response = await fetch("/resumen");
+
+        if (!response.ok) {
+            throw new Error("Error al consultar el resumen");
+        }
+
+        const data = await response.json();
+
+        const container = document.getElementById("resumen-container");
+
+        container.innerHTML = `
+            <div class="reporte">
+                <h3>Servidores</h3>
+
+                <p>Total: ${data.servidores.total}</p>
+                <p>Producción: ${data.servidores.produccion}</p>
+                <p>Testing: ${data.servidores.testing}</p>
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.error("Error:", error);
+
+    }
+
+}
+
+cargarResumen();

@@ -239,14 +239,51 @@ async function cargarResumen() {
         const container = document.getElementById("resumen-container");
 
         container.innerHTML = `
-            <div class="reporte">
-                <h3>Servidores</h3>
+        <div class="reporte">
+            <h3>Servidores</h3>
 
-                <p>Total: ${data.servidores.total}</p>
-                <p>Producción: ${data.servidores.produccion}</p>
-                <p>Testing: ${data.servidores.testing}</p>
-            </div>
-        `;
+            <p>Total: ${data.servidores.total}</p>
+            <p>Producción: ${data.servidores.produccion}</p>
+            <p>Testing: ${data.servidores.testing}</p>
+        </div>
+
+        <div class="reporte">
+            <h3>Bases de datos</h3>
+
+            <p>Total: ${data.bases.total}</p>
+            <p>Oracle: ${data.bases.oracle}</p>
+            <p>SQL Server: ${data.bases.sqlServer}</p>
+            <p>MySQL: ${data.bases.mysql}</p>
+        </div>
+        <div class="reporte">
+            <h3>Red</h3>
+            <p>Interfaces: ${data.red.interfaces}</p>
+            <p>VLANs: ${data.red.vlans}</p>
+    </div>
+    <div class="reporte">
+    <h3>Storage</h3>
+
+    <p>Unidades: ${data.storage.unidades}</p>
+    <p>Capacidad total: ${data.storage.capacidadTotalGB} GB</p>
+
+    <h4>Distribución por tipo</h4>
+
+    <p>SSD: ${data.storage.porTipo.ssd}</p>
+    <p>HDD: ${data.storage.porTipo.hdd}</p>
+</div>
+<div class="reporte">
+    <h3>Sistemas operativos</h3>
+
+    <p>Total: ${data.sistemasOperativos.total}</p>
+    <p>Activos: ${data.sistemasOperativos.activos}</p>
+
+    <h4>Distribución por familia</h4>
+
+    <p>Oracle Linux: ${data.sistemasOperativos.porFamilia["oracle linux"]}</p>
+    <p>Windows Server: ${data.sistemasOperativos.porFamilia["windows server"]}</p>
+    <p>Ubuntu Server: ${data.sistemasOperativos.porFamilia["ubuntu server"]}</p>
+</div>
+    `;
 
     } catch (error) {
 

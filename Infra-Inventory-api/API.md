@@ -24,7 +24,8 @@ También dispone de un endpoint de resumen general de infraestructura.
 
 ## 3. Dirección base
 
-text
+La dirección base de la API es:
+
 http://localhost:3000
 
 
@@ -32,66 +33,70 @@ http://localhost:3000
 
 ### 4.1 Servidores
 
-| Método 	| Ruta 					| Descripción 	
-|--------	|----------------------	|-------------	
-| GET 		| 	/servidores 		| Listar todos los servidores 
-| GET 		| 	/servidores/:id 	| Consultar un servidor por ID 
-| POST 		| 	/servidores 		| Crear un servidor 
-| PUT 		| 	/servidores/:id 	| Actualizar un servidor 
-| DELETE 	|  /servidores/:id 		| Eliminar un servidor 
+| Método    | Ruta                      | Descripción 
+|-----------|-----------------------------------|--------------------------------------------------
+| GET       | /servidores               | Listar todos los servidores 
+| GET       | /servidores?campo=valor   | Buscar servidores mediante filtros 
+| GET       | /servidores/:id           | Consultar un servidor por ID 
+| POST      | /servidores               | Crear un servidor 
+| PUT       | /servidores/:id           | Actualizar un servidor 
+| DELETE    | /servidores/:id           | Eliminar un servidor 
 
 ### 4.2 Bases de datos
 
-| Método 	| Ruta 					| Descripción 	
-|--------	|----------------------	|-------------	
-| GET 		| /bases 				| Listar todas las bases de datos 
-| GET 		| /bases/:id 			| Consultar una base de datos por ID 
-| POST 		| /bases 				| Crear una base de datos 
-| PUT 		| /bases/:id 			| Actualizar una base de datos 
-| DELETE 	| /bases/:id 			| Eliminar una base de datos 
+| Método    | Ruta                      | Descripción 
+|-----------|---------------------------|--------------------------------------------------
+| GET       | /bases                    | Listar todas las bases de datos 
+| GET       | /bases?campo=valor        | Buscar bases de datos mediante filtros 
+| GET       | /bases/:id                | Consultar una base de datos por ID 
+| POST      | /bases                    | Crear una base de datos 
+| PUT       | /bases/:id                | Actualizar una base de datos 
+| DELETE    | /bases/:id                | Eliminar una base de datos 
 
 ### 4.3 Red
 
-| Método 	| Ruta 					| Descripción 	
-|--------	|----------------------	|-------------	
-| GET 		| /red 					| Listar todas las interfaces de red 
-| GET 		| /red/:id 				| Consultar una interfaz por ID 
-| POST 		| /red 					| Crear una interfaz de red 
-| PUT 		| /red/:id 				| Actualizar una interfaz de red 
-| DELETE 	| /red/:id 				| Eliminar una interfaz de red 
+| Método    | Ruta                      | Descripción 
+|-----------|-----------------------------------|--------------------------------------------------
+| GET       | /red                      | Listar todas las interfaces de red
+| GET       | /red?campo=valor          | Buscar configuraciones de red mediante filtros 
+| GET       | /red/:id                  | Consultar una interfaz por ID 
+| POST      | /red                      | Crear una interfaz de red 
+| PUT       | /red/:id                  | Actualizar una interfaz de red 
+| DELETE    | /red/:id                  | Eliminar una interfaz de red 
 
 ### 4.4 Storage
 
-| Método 	| Ruta 					| Descripción 	
-|--------	|----------------------	|-------------	
-| GET 		| /storage 				| Listar todas las unidades de almacenamiento 
-| GET 		| /storage/:id 			| Consultar una unidad por ID 
-| POST 		| /storage 				| Crear una unidad de almacenamiento 
-| PUT 		| /storage/:id 			| Actualizar una unidad de almacenamiento 
-| DELETE 	| /storage/:id 			| Eliminar una unidad de almacenamiento 
+| Método    | Ruta                      | Descripción 
+|-----------|---------------------------|--------------------------------------------------
+| GET       | /storage                  | Listar todas las unidades de almacenamiento 
+| GET       | /storage?campo=valor      | Buscar unidades de almacenamiento mediante filtros 
+| GET       | /storage/:id              | Consultar una unidad por ID 
+| POST      | /storage                  | Crear una unidad de almacenamiento 
+| PUT       | /storage/:id              | Actualizar una unidad de almacenamiento 
+| DELETE    | /storage/:id              | Eliminar una unidad de almacenamiento 
 
 ### 4.5 Sistemas operativos
 
-| Método 	| Ruta 						| Descripción 	
-|--------	|----------------------		|-------------	
-| GET 		| /sistemas-operativos 		| Listar todos los sistemas operativos 
-| GET 		| /sistemas-operativos/:id 	| Consultar un sistema operativo por ID 
-| POST 		| /sistemas-operativos 		| Crear un sistema operativo 
-| PUT 		| /sistemas-operativos/:id 	| Actualizar un sistema operativo 
-| DELETE 	| /sistemas-operativos/:id 	| Eliminar un sistema operativo 
+| Método    | Ruta                              | Descripción 
+|-----------|-----------------------------------|--------------------------------------------------
+| GET       | /sistemas-operativos              | Listar todos los sistemas operativos 
+| GET       | /sistemas-operativos?campo=valor  | Buscar sistemas operativos mediante filtros 
+| GET       | /sistemas-operativos/:id          | Consultar un sistema operativo por ID 
+| POST      | /sistemas-operativos              | Crear un sistema operativo 
+| PUT       | /sistemas-operativos/:id          | Actualizar un sistema operativo 
+| DELETE    | /sistemas-operativos/:id          | Eliminar un sistema operativo 
 
 ### 4.6 Resumen de infraestructura
 
-| Método 	| Ruta 					| Descripción 	
-|--------	|----------------------	|-------------	
-| GET 		| /resumen 				| Obtener un resumen general de la infraestructura 
+| Método    | Ruta                              | Descripción 
+|-----------|-----------------------------------|--------------------------------------------------
+| GET       | /resumen                          | Obtener un resumen general de la infraestructura 
 
 ## 5. Parámetros de las rutas
 
 Las rutas que contienen :id utilizan un parámetro de identificación del recurso.
 
 Por ejemplo:
-
 
 GET /servidores/1
 GET /bases/2
@@ -103,15 +108,14 @@ En estos casos, el número representa el ID del recurso que se desea consultar, 
 
 ## 6. Códigos de respuesta HTTP
 
-| Código 					| Descripción 
-|---------------------------|-------------------------------------------
-| 200 OK 					| Solicitud procesada correctamente 
-| 201 Created 				| Recurso creado correctamente 
-| 204 No Content			| Recurso eliminado correctamente 
-| 400 Bad Request 			| Solicitud incorrecta 
-| 404 Not Found 			| Recurso no encontrado 
-| 500 Internal Server Error | Error interno del servidor 
+La API utiliza los siguientes códigos de respuesta:
 
+| Código            | Descripción 
+|-------------------|------------------------------------
+| 200 OK            | Solicitud procesada correctamente 
+| 201 Created       | Recurso creado correctamente 
+| 204 No Content    | Recurso eliminado correctamente 
+| 404 Not Found     | Recurso no encontrado 
 
 ## 7. Ejemplos de uso
 
@@ -121,7 +125,6 @@ En estos casos, el número representa el ID del recurso que se desea consultar, 
 
 Body (JSON):
 
-json
 {
     "nombre": "srv-postman",
     "ip": "192.168.1.50",
@@ -134,7 +137,6 @@ json
 
 Body (JSON):
 
-json
 {
     "nombre": "srv-postman",
     "ip": "192.168.1.55",
@@ -155,7 +157,7 @@ Permite eliminar un servidor mediante su ID.
 
 La API permite filtrar los servidores mediante parámetros de consulta (*query parameters*).
 
-**Ejemplos:**
+Ejemplos:
 
 - GET /servidores?ambiente=Produccion
 - GET /servidores?tipo=Virtual
@@ -171,7 +173,6 @@ Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumpl
 
 Body (JSON):
 
-json
 {
     "motor": "PostgreSQL",
     "version": "16",
@@ -185,7 +186,6 @@ json
 
 Body (JSON):
 
-json
 {
     "motor": "PostgreSQL",
     "version": "16.1",
@@ -193,7 +193,6 @@ json
     "nombre": "INVENTARIO_TEST",
     "responsable": "Jesus"
 }
-
 
 
 **Consultar base de datos – GET /bases/:id**
@@ -208,9 +207,9 @@ Permite eliminar una base de datos mediante su ID.
 
 La API permite filtrar las bases de datos mediante parámetros de consulta (*query parameters*).
 
-**Ejemplos:**
+Ejemplos:
 
--`GET /bases?motor=Oracle
+- GET /bases?motor=Oracle
 - GET /bases?version=19c
 - GET /bases?servidor=srv-db01
 - GET /bases?motor=Oracle&version=26ai
@@ -225,7 +224,6 @@ Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumpl
 
 Body (JSON):
 
-json
 {
     "servidor": "srv-postman",
     "interfaz": "eth1",
@@ -236,12 +234,10 @@ json
 }
 
 
-
 **Actualizar interfaz de red – PUT /red/:id**
 
 Body (JSON):
 
-json
 {
     "servidor": "srv-postman",
     "interfaz": "eth1",
@@ -250,7 +246,6 @@ json
     "gateway": "192.168.1.1",
     "vlan": 30
 }
-
 
 
 **Consultar interfaz de red – GET /red/:id**
@@ -265,7 +260,7 @@ Permite eliminar una interfaz de red mediante su ID.
 
 La API permite filtrar las configuraciones de red mediante parámetros de consulta (*query parameters*).
 
-**Ejemplos:**
+Ejemplos:
 
 - GET /red?servidor=srv-db01
 - GET /red?interfaz=eth0
@@ -282,7 +277,6 @@ Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumpl
 
 Body (JSON):
 
-json
 {
     "servidor": "srv-postman",
     "tipo": "SSD",
@@ -292,12 +286,10 @@ json
 }
 
 
-
 **Actualizar unidad de almacenamiento – PUT /storage/:id**
 
 Body (JSON):
 
-json
 {
     "servidor": "srv-postman",
     "tipo": "SSD",
@@ -305,7 +297,6 @@ json
     "unidad": "/datos",
     "estado": "Activo"
 }
-
 
 
 **Consultar unidad de almacenamiento – GET /storage/:id**
@@ -320,7 +311,7 @@ Permite eliminar una unidad de almacenamiento mediante su ID.
 
 La API permite filtrar las unidades de almacenamiento mediante parámetros de consulta (*query parameters*).
 
-**Ejemplos:**
+Ejemplos:
 
 - GET /storage?servidor=srv-db01
 - GET /storage?tipo=SSD
@@ -337,7 +328,6 @@ Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumpl
 
 Body (JSON):
 
-json
 {
     "servidor": "srv-postman",
     "familia": "Ubuntu Server",
@@ -347,12 +337,10 @@ json
 }
 
 
-
 **Actualizar sistema operativo – PUT /sistemas-operativos/:id**
 
 Body (JSON):
 
-json
 {
     "servidor": "srv-postman",
     "familia": "Ubuntu Server",
@@ -360,7 +348,6 @@ json
     "arquitectura": "x86_64",
     "estado": "Activo"
 }
-
 
 
 **Consultar sistema operativo – GET /sistemas-operativos/:id**
@@ -375,7 +362,7 @@ Permite eliminar un sistema operativo mediante su ID.
 
 La API permite filtrar los sistemas operativos mediante parámetros de consulta (*query parameters*).
 
-**Ejemplos:**
+Ejemplos:
 
 - GET /sistemas-operativos?servidor=srv-db01
 - GET /sistemas-operativos?familia=Oracle Linux
@@ -403,7 +390,6 @@ La respuesta incluye:
 
 **Ejemplo de respuesta (JSON):**
 
-json
 {
     "servidores": {
         "total": 3,

@@ -151,6 +151,20 @@ Permite obtener los datos de un servidor específico mediante su ID.
 
 Permite eliminar un servidor mediante su ID.
 
+#### Búsqueda de servidores
+
+La API permite filtrar los servidores mediante parámetros de consulta (*query parameters*).
+
+**Ejemplos:**
+
+- GET /servidores?ambiente=Produccion
+- GET /servidores?tipo=Virtual
+- GET /servidores?ambiente=Testing&tipo=Virtual
+
+Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumplirse todos para que el servidor aparezca en los resultados.
+
+**Respuesta:** 200 OK con un arreglo de servidores que cumplen los filtros.
+
 ### 7.2 Bases de datos
 
 **Crear base de datos – POST /bases**
@@ -162,8 +176,7 @@ json
     "motor": "PostgreSQL",
     "version": "16",
     "servidor": "srv-postman",
-    "base": "INVENTARIO_TEST",
-    "fecha_creacion": "2026-11-05",
+    "nombre": "INVENTARIO_TEST",
     "responsable": "Jesus"
 }
 
@@ -177,10 +190,10 @@ json
     "motor": "PostgreSQL",
     "version": "16.1",
     "servidor": "srv-postman",
-    "base": "INVENTARIO_TEST",
-    "fecha_creacion": "2026-11-05",
+    "nombre": "INVENTARIO_TEST",
     "responsable": "Jesus"
 }
+
 
 
 **Consultar base de datos – GET /bases/:id**
@@ -191,6 +204,20 @@ Permite obtener los datos de una base de datos específica mediante su ID.
 
 Permite eliminar una base de datos mediante su ID.
 
+#### Búsqueda de bases de datos
+
+La API permite filtrar las bases de datos mediante parámetros de consulta (*query parameters*).
+
+**Ejemplos:**
+
+-`GET /bases?motor=Oracle
+- GET /bases?version=19c
+- GET /bases?servidor=srv-db01
+- GET /bases?motor=Oracle&version=26ai
+
+Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumplirse todos para que la base aparezca en los resultados.
+
+**Respuesta:** 200 OK con un arreglo de bases de datos que cumplen los filtros.
 
 ### 7.3 Red
 
@@ -204,8 +231,10 @@ json
     "interfaz": "eth1",
     "ip": "192.168.1.60",
     "mascara": "255.255.255.0",
+    "gateway": "192.168.1.1",
     "vlan": 20
 }
+
 
 
 **Actualizar interfaz de red – PUT /red/:id**
@@ -218,8 +247,10 @@ json
     "interfaz": "eth1",
     "ip": "192.168.1.61",
     "mascara": "255.255.255.0",
+    "gateway": "192.168.1.1",
     "vlan": 30
 }
+
 
 
 **Consultar interfaz de red – GET /red/:id**
@@ -229,6 +260,21 @@ Permite obtener los datos de una interfaz de red específica mediante su ID.
 **Eliminar interfaz de red – DELETE /red/:id**
 
 Permite eliminar una interfaz de red mediante su ID.
+
+#### Búsqueda de configuraciones de red
+
+La API permite filtrar las configuraciones de red mediante parámetros de consulta (*query parameters*).
+
+**Ejemplos:**
+
+- GET /red?servidor=srv-db01
+- GET /red?interfaz=eth0
+- GET /red?vlan=100
+- GET /red?servidor=srv-app01&vlan=200
+
+Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumplirse todos para que la configuración aparezca en los resultados.
+
+**Respuesta:** 200 OK con un arreglo de configuraciones de red que cumplen los filtros.
 
 ### 7.4 Storage
 
@@ -241,8 +287,10 @@ json
     "servidor": "srv-postman",
     "tipo": "SSD",
     "capacidadGB": 1000,
-    "puntoMontaje": "/datos"
+    "unidad": "/datos",
+    "estado": "Activo"
 }
+
 
 
 **Actualizar unidad de almacenamiento – PUT /storage/:id**
@@ -254,8 +302,10 @@ json
     "servidor": "srv-postman",
     "tipo": "SSD",
     "capacidadGB": 1500,
-    "puntoMontaje": "/datos"
+    "unidad": "/datos",
+    "estado": "Activo"
 }
+
 
 
 **Consultar unidad de almacenamiento – GET /storage/:id**
@@ -266,6 +316,21 @@ Permite obtener los datos de una unidad de almacenamiento específica mediante s
 
 Permite eliminar una unidad de almacenamiento mediante su ID.
 
+#### Búsqueda de almacenamiento
+
+La API permite filtrar las unidades de almacenamiento mediante parámetros de consulta (*query parameters*).
+
+**Ejemplos:**
+
+- GET /storage?servidor=srv-db01
+- GET /storage?tipo=SSD
+- GET /storage?estado=Activo
+- GET /storage?servidor=srv-db02&tipo=HDD
+
+Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumplirse todos para que la unidad aparezca en los resultados.
+
+**Respuesta:** 200 OK con un arreglo de unidades de almacenamiento que cumplen los filtros.
+
 ### 7.5 Sistemas operativos
 
 **Crear sistema operativo – POST /sistemas-operativos**
@@ -275,11 +340,12 @@ Body (JSON):
 json
 {
     "servidor": "srv-postman",
-    "nombre": "Ubuntu Server",
+    "familia": "Ubuntu Server",
     "version": "24.04",
     "arquitectura": "x86_64",
     "estado": "Activo"
 }
+
 
 
 **Actualizar sistema operativo – PUT /sistemas-operativos/:id**
@@ -289,11 +355,12 @@ Body (JSON):
 json
 {
     "servidor": "srv-postman",
-    "nombre": "Ubuntu Server",
+    "familia": "Ubuntu Server",
     "version": "24.04.1",
     "arquitectura": "x86_64",
     "estado": "Activo"
 }
+
 
 
 **Consultar sistema operativo – GET /sistemas-operativos/:id**
@@ -303,6 +370,21 @@ Permite obtener los datos de un sistema operativo específico mediante su ID.
 **Eliminar sistema operativo – DELETE /sistemas-operativos/:id**
 
 Permite eliminar un sistema operativo mediante su ID.
+
+#### Búsqueda de sistemas operativos
+
+La API permite filtrar los sistemas operativos mediante parámetros de consulta (*query parameters*).
+
+**Ejemplos:**
+
+- GET /sistemas-operativos?servidor=srv-db01
+- GET /sistemas-operativos?familia=Oracle Linux
+- GET /sistemas-operativos?version=2022
+- GET /sistemas-operativos?estado=Activo
+
+Los filtros pueden combinarse. Cuando se envían varios parámetros, deben cumplirse todos para que el sistema operativo aparezca en los resultados.
+
+**Respuesta:** 200 OK con un arreglo de sistemas operativos que cumplen los filtros.
 
 ### 7.6 Resumen de infraestructura
 
